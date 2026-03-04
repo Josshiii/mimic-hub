@@ -153,16 +153,6 @@ fn enviar_paquete_smart(socket: &UdpSocket, ip_virtual_destino: &str, rutas_dest
     }
 }
 
-#[allow(dead_code)]
-fn enviar_paquete_turbo(socket: &UdpSocket, destino: &str, datos: &[u8], cipher: &ChaCha20Poly1305) {
-    let compressed_data = compress_prepend_size(datos);
-    let mut nonce_bytes = [0u8; 12]; rand::thread_rng().fill_bytes(&mut nonce_bytes); let nonce = Nonce::from_slice(&nonce_bytes);
-    if let Ok(encrypted_msg) = cipher.encrypt(nonce, compressed_data.as_ref()) {
-        let mut final_packet = nonce_bytes.to_vec(); final_packet.extend_from_slice(&encrypted_msg);
-        let _ = socket.send_to(&final_packet, destino);
-    }
-}
-
 fn conectar_discord() {
     let mut guard = DISCORD_CLIENT.lock().unwrap();
     if guard.is_none() {
@@ -284,9 +274,26 @@ fn iniciar_hilo_entrada<R: tauri::Runtime>(session: Arc<wintun::Session>, socket
                     let nonce = Nonce::from_slice(&buffer[..12]);
                     if let Ok(dec) = cipher.decrypt(nonce, &buffer[12..size]) {
                         if let Ok(orig) = decompress_size_prepended(&dec) {
+                            
+                            // 🚀 CORE FIX: AUTO-APRENDIZAJE DE NAT SIMÉTRICA (CONNECTION TRACKING)
+                            // Si logramos descifrar esto, el remitente es legítimo. Aprendemos su puerto.
+                            if orig.len() >= 20 && orig != HEARTBEAT_MSG {
+                                let src_vip = format!("{}.{}.{}.{}", orig[12], orig[13], orig[14], orig[15]);
+                                let src_str = src.to_string();
+                                
+                                if let Ok(mut guard) = ROUTING_TABLE.lock() {
+                                    if let Some(table) = guard.as_mut() {
+                                        let endpoints = table.entry(src_vip).or_insert_with(HashSet::new);
+                                        if !endpoints.contains(&src_str) {
+                                            endpoints.insert(src_str);
+                                            let _ = app_handle.emit("server-log", format!("🎯 RUTA P2P APRENDIDA (NAT Penetrado): {}", src));
+                                        }
+                                    }
+                                }
+                            }
+
                             if !es_paquete_seguro(&orig) { continue; }
                             
-                            // 🛑 AQUÍ ESTÁ EL SONAR TÁCTICO QUE OLVIDASTE
                             if orig == HEARTBEAT_MSG { 
                                 let is_relay = {
                                     let guard = RELAY_ADDRESS.lock().unwrap();
@@ -354,21 +361,17 @@ fn generar_clave_segura() -> String { let mut k=[0u8;32]; rand::thread_rng().fil
 
 #[tauri::command]
 fn activar_relay(server_ip: String, mi_ip_virtual: String, app_handle: tauri::AppHandle) -> String {
-    // NOTA DE DEUDA TÉCNICA: Esto debería ser un DNS (ej. relay.mimic-hub.net) en el futuro.
-    let ip_maestra = "155.138.243.241:10000".to_string();
-
+    let ip_maestra = "relay.mimic-hub.net:10000".to_string();
     if let Ok(mut guard) = RELAY_ADDRESS.lock() { *guard = Some(ip_maestra.clone()); }
     if let Ok(mut guard) = MY_VIRTUAL_IP.lock() { *guard = Some(mi_ip_virtual.clone()); }
     
-    let _ = app_handle.emit("server-log", format!("🔗 Relay forzado a Dallas: {}", ip_maestra));
+    let _ = app_handle.emit("server-log", format!("🔗 Relay DNS inicializado: {}", ip_maestra));
     "Relay Configurado 🚀".to_string()
 }
 
-// --- NUEVA FUNCIÓN: EL GATILLO DEL HOLE PUNCHING ---
+// --- CORE FIX: EL GATILLO DEL HOLE PUNCHING (ESTRATEGIA SHOTGUN) ---
 #[tauri::command]
 fn forzar_hole_punch(ip_publica: String, puerto: u16, app_handle: tauri::AppHandle) -> String {
-    let endpoint = format!("{}:{}", ip_publica, puerto);
-    
     let socket_opt = { 
         let guard = GLOBAL_SOCKET.lock().unwrap(); 
         guard.as_ref().map(|s| s.try_clone().unwrap()) 
@@ -376,14 +379,28 @@ fn forzar_hole_punch(ip_publica: String, puerto: u16, app_handle: tauri::AppHand
     
     if let Some(socket) = socket_opt {
         thread::spawn(move || {
-            let _ = app_handle.emit("server-log", format!("💥 INICIANDO PUNCH SECUENCIA HACIA: {}", endpoint));
+            let _ = app_handle.emit("server-log", format!("💥 INICIANDO PERFORACIÓN SHOTGUN HACIA: {}", ip_publica));
             
-            for _ in 1..=15 {
-                let _ = socket.send_to(HOLE_PUNCH_MSG, &endpoint);
-                thread::sleep(Duration::from_millis(150)); 
+            // ESTRATEGIA SHOTGUN: Adivinación de puertos NAT Simétricos (+2, -2 puertos)
+            let puertos_a_probar = [
+                puerto,
+                puerto.saturating_add(1),
+                puerto.saturating_sub(1),
+                puerto.saturating_add(2),
+                puerto.saturating_sub(2),
+            ];
+
+            for _ in 1..=20 { // 20 ráfagas de fuego de cobertura
+                for p in &puertos_a_probar {
+                    if *p > 0 {
+                        let endpoint = format!("{}:{}", ip_publica, p);
+                        let _ = socket.send_to(HOLE_PUNCH_MSG, &endpoint);
+                    }
+                }
+                thread::sleep(Duration::from_millis(100)); // Disparos cada 100ms
             }
         });
-        return "Perforación en progreso".to_string();
+        return "Perforación Shotgun iniciada".to_string();
     }
     "Error: Adaptador de red inactivo".to_string()
 }
