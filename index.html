@@ -33,10 +33,10 @@
         .user-name-top { font-size: 14px; font-weight: bold; color: #fff; }
         .user-id-top { font-size: 10px; color: #888; font-family: monospace; }
 
-        /* PESTAÑAS */
+        /* PESTAÑAS Y COLUMNAS */
         .tab-content { flex: 1; display: none; flex-direction: row; overflow: hidden; }
         .tab-content.active { display: flex; }
-        .col-left { width: 300px; background: #0B0C10; border-right: 1px solid #1F2833; padding: 25px; overflow-y: auto; }
+        .col-left { width: 250px; background: #0B0C10; border-right: 1px solid #1F2833; padding: 25px; overflow-y: auto; } /* Más espacio para las salas */
         .col-main { flex: 1; background: #0B0C10; padding: 25px; display: flex; flex-direction: column; overflow-y: auto; }
 
         /* FORMULARIOS */
@@ -51,7 +51,7 @@
         .btn-action { background: #1F2833; color: #fff; border: 1px solid #333; padding: 8px 15px; font-size: 11px; font-weight: bold; border-radius: 4px; cursor: pointer; transition: 0.2s; display: flex; align-items: center; justify-content: center; gap: 8px; } 
         .btn-action:hover { background: #45F0D1; color: #000; border-color: #45F0D1; }
 
-        /* LISTAS */
+        /* LISTAS (SALAS Y AMIGOS) */
         .section-title { font-size: 12px; font-weight: 800; letter-spacing: 1px; color: #fff; border-bottom: 1px solid #1F2833; padding-bottom: 10px; margin-bottom: 15px; display: flex; justify-content: space-between; text-transform: uppercase; }
         .card-item { background: #12161A; padding: 15px; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center; border-left: 3px solid #1F2833; border-radius: 4px; transition: 0.2s; } 
         .card-item:hover { border-left-color: #45F0D1; background: #1A2026; }
@@ -70,23 +70,21 @@
         .msg { font-size: 13px; line-height: 1.5; word-wrap: break-word; background: #12161A; padding: 10px 15px; border-radius: 8px; width: fit-content; max-width: 80%; } 
         .msg-sender { font-weight: bold; color: #45F0D1; font-size: 11px; display: block; margin-bottom: 4px; text-transform: uppercase; } 
         .msg-text { color: #E0E0E0; } 
-        .sys-msg { color: #888; font-size: 11px; font-weight: bold; text-transform: uppercase; text-align: center; margin: 10px 0; letter-spacing: 1px; background: transparent; width: 100%; max-width: 100%; }
+        .sys-msg { color: #888; font-size: 11px; font-weight: bold; text-align: center; margin: 10px 0; letter-spacing: 0.5px; background: transparent; width: 100%; max-width: 100%; }
         .chat-input-area { padding: 20px; background: #12161A; border-top: 1px solid #1F2833; } 
         #chat-input { margin: 0; background: #0B0C10; border: 1px solid #1F2833; padding: 15px; font-size: 13px; width: 100%; color: #fff; border-radius: 8px; }
 
-        /* AVATAR GIGANTE */
-        .profile-page-avatar { width: 180px; height: 180px; border-radius: 12px; background-color: #12161A; border: 4px solid #1F2833; display: flex; justify-content: center; align-items: center; color: #555; font-size: 64px; font-weight: bold; background-size: cover; background-position: center; cursor: pointer; transition: 0.2s; margin-bottom: 20px; position: relative; }
+        /* AVATAR GIGANTE (PESTAÑA PERFIL) */
+        .profile-page-avatar { width: 150px; height: 150px; border-radius: 12px; background-color: #12161A; border: 4px solid #1F2833; display: flex; justify-content: center; align-items: center; color: #555; font-size: 64px; font-weight: bold; background-size: cover; background-position: center; cursor: pointer; transition: 0.2s; margin-bottom: 20px; position: relative; }
         .profile-page-avatar:hover { border-color: #45F0D1; box-shadow: 0 0 20px rgba(69,240,209,0.3); }
         .profile-page-avatar:hover .change-label { opacity: 1; }
-        .change-label { position: absolute; bottom: 0; left: 0; width: 100%; background: rgba(0,0,0,0.7); color: #fff; font-size: 11px; font-weight: bold; padding: 5px; text-transform: uppercase; text-align: center; border-radius: 0 0 8px 8px; opacity: 0; transition: 0.2s; }
-        #profile-upload { display: none; }
+        .change-label { position: absolute; bottom: 0; left: 0; width: 100%; background: rgba(0,0,0,0.8); color: #fff; font-size: 11px; font-weight: bold; padding: 8px; text-transform: uppercase; text-align: center; border-radius: 0 0 8px 8px; opacity: 0; transition: 0.2s; }
 
         /* BARRA DE ESTADO & TOASTS */
         .status-bar { height: 30px; background: #050608; border-top: 1px solid #1F2833; display: flex; align-items: center; justify-content: space-between; padding: 0 15px; font-size: 10px; color: #666; font-family: monospace; letter-spacing: 1px; text-transform: uppercase; z-index: 10; } 
-        .hidden { display: none; }
         
         #toast-container { position: fixed; bottom: 50px; right: 20px; display: flex; flex-direction: column; gap: 10px; z-index: 1000; }
-        .toast { background: #12161A; border-left: 3px solid #10B981; padding: 15px 20px; color: white; border-radius: 4px; font-size: 12px; font-weight: bold; box-shadow: 0 5px 15px rgba(0,0,0,0.8); transform: translateX(120%); transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); display: flex; align-items: center; gap: 12px; border: 1px solid #1F2833; font-family: monospace; letter-spacing: 0.5px; } 
+        .toast { background: #12161A; border-left: 3px solid #10B981; padding: 15px 20px; color: white; border-radius: 4px; font-size: 12px; font-weight: bold; box-shadow: 0 5px 15px rgba(0,0,0,0.8); transform: translateX(120%); transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); display: flex; align-items: center; gap: 12px; border: 1px solid #1F2833; font-family: 'Inter', sans-serif; } 
         .toast.error { border-left-color: #DC2626; } 
         .toast.show { transform: translateX(0); }
     </style>
@@ -95,32 +93,32 @@
     
     <nav class="sidebar-nav">
         <div class="nav-btn active" onclick="switchTab('tab-salas', this)">
-            <i data-lucide="server"></i> <span class="nav-tooltip">HUB DE SALAS</span>
+            <i data-lucide="server"></i> <span class="nav-tooltip">Salas de Juego</span>
         </div>
         <div class="nav-btn" onclick="switchTab('tab-red', this)">
-            <i data-lucide="network"></i> <span class="nav-tooltip">RED PRIVADA</span>
+            <i data-lucide="network"></i> <span class="nav-tooltip">Red Privada</span>
         </div>
         <div class="nav-btn" onclick="switchTab('tab-chat', this)">
-            <i data-lucide="terminal"></i> <span class="nav-tooltip">TERMINAL COMUNICACIONES</span>
+            <i data-lucide="message-square"></i> <span class="nav-tooltip">Chat General</span>
         </div>
         <div style="flex:1"></div>
         <div class="nav-btn" onclick="switchTab('tab-perfil', this)">
-            <i data-lucide="user"></i> <span class="nav-tooltip">IDENTIDAD / SISTEMA</span>
+            <i data-lucide="user"></i> <span class="nav-tooltip">Mi Perfil</span>
         </div>
     </nav>
 
     <div class="main-container">
         
         <header class="top-bar">
-            <div class="ip-display-container" onclick="copyToClipboard(document.getElementById('ip-virtual-display').textContent, 'IP VIRTUAL COPIADA')">
-                <span class="ip-label">DIRECCIÓN IP ASIGNADA</span>
+            <div class="ip-display-container" onclick="copyToClipboard(document.getElementById('ip-virtual-display').textContent, 'IP Copiada')">
+                <span class="ip-label">DIRECCIÓN IP VIRTUAL</span>
                 <span class="ip-value" id="ip-virtual-display">0.0.0.0</span>
             </div>
             
             <div class="user-mini-profile">
                 <div class="user-details">
                     <span class="user-name-top" id="ui-name-display-mini">JUGADOR</span>
-                    <span class="user-id-top" id="my-id-display-mini" onclick="copyToClipboard(this.textContent, 'ID COPIADO')" style="cursor:pointer">M-XXXXXX</span>
+                    <span class="user-id-top" id="my-id-display-mini" onclick="copyToClipboard(this.textContent, 'ID Copiado')" style="cursor:pointer">M-XXXXXX</span>
                 </div>
                 <div class="avatar-img-mini" id="ui-avatar-mini">?</div>
             </div>
@@ -128,36 +126,57 @@
 
         <div id="tab-salas" class="tab-content active">
             <div class="col-left">
-                <div class="section-title">NUEVO ENLACE SECURE</div>
-                <label>JUEGO / ACTIVIDAD</label><input id="my-game" placeholder="ej. Halo CE, Minecraft">
-                <label>CIFRADO DE SALA (CONTRASEÑA)</label><input id="host-password" placeholder="Libre" type="password">
+                <div class="section-title">CREAR SALA</div>
+                <label>Juego</label>
+                <input id="my-game" placeholder="ej. Halo CE, Minecraft">
+                
+                <label>Contraseña</label>
+                <input id="host-password" placeholder="Opcional" type="password">
+                
                 <div style="margin: 15px 0; display:flex; align-items:center; gap:8px;">
-                    <input type="checkbox" id="private-lobby" style="width:auto; accent-color: #45F0D1;"> <span style="font-size:11px; color:#888; font-weight: 600;">ENRUTAMIENTO OCULTO</span>
+                    <input type="checkbox" id="private-lobby" style="width:auto; accent-color: #45F0D1;"> 
+                    <span style="font-size:11px; color:#888; font-weight: 600;">SALA PRIVADA</span>
                 </div>
-                <button id="btn-host" class="btn-host">INICIALIZAR SALA</button>
-                <button onclick="fixNetwork()" class="btn-action" style="margin-top:20px; background:transparent; border:1px dashed #333; color:#666; width:100%; padding:12px; font-size:10px; font-weight: bold; transition: 0.2s;" onmouseover="this.style.color='#fff'; this.style.borderColor='#45F0D1'" onmouseout="this.style.color='#666'; this.style.borderColor='#333'">
-                    <i data-lucide="activity" style="width: 14px; height: 14px;"></i> FORZAR ADAPTADOR DE RED
+                
+                <button id="btn-host" class="btn-host">CREAR SALA</button>
+                
+                <button onclick="fixNetwork()" class="btn-action" style="margin-top:20px; background:transparent; border:1px dashed #333; color:#666; width:100%; padding:12px; font-size:10px; transition: 0.2s;" onmouseover="this.style.color='#fff'; this.style.borderColor='#45F0D1'" onmouseout="this.style.color='#666'; this.style.borderColor='#333'">
+                    <i data-lucide="activity" style="width: 14px; height: 14px;"></i> Reparar Red
                 </button>
             </div>
             <div class="col-main">
-                <div class="section-title"><span>SISTEMAS PÚBLICOS</span><span id="server-status" style="color:#555;">SINCRO...</span></div>
+                <div class="section-title"><span>EXPLORADOR DE SALAS</span><span id="server-status" style="color:#555;">Conectando...</span></div>
                 <div id="lobby-list" style="overflow-y: auto; flex:1;"></div>
             </div>
         </div>
 
         <div id="tab-red" class="tab-content">
             <div class="col-left" style="width: 350px;">
-                <div class="section-title">AGREGAR NODO</div>
-                <label>ID DEL AGENTE (M-XXXXXX)</label>
+                <div class="section-title">AÑADIR AMIGO</div>
+                <label>ID DEL JUGADOR</label>
                 <div style="display: flex; gap: 10px; margin-bottom: 20px;">
-                    <input id="friend-code-input" placeholder="Pegar ID..." style="margin:0;">
-                    <button class="btn-action" onclick="addFriend()">[ AÑADIR ]</button>
+                    <input id="friend-code-input" placeholder="M-XXXXXX" style="margin:0;">
+                    <button class="btn-action" onclick="addFriend()">Añadir</button>
                 </div>
-                <div class="section-title" style="margin-top: 30px;">TRÁFICO DE BANDA ANCHA</div>
+                
+                <div class="section-title" style="margin-top: 30px;">TRÁFICO DE RED</div>
                 <canvas id="net-canvas" width="300" height="80" style="background: #12161A; border-radius: 4px; border: 1px solid #1F2833;"></canvas>
+
+                <div class="section-title" style="width: 100%; margin-top: 40px; border-color: #333;">DIAGNÓSTICO DEL TÚNEL</div>
+                <div style="background: #050608; border: 1px solid #1F2833; padding: 20px; border-radius: 4px; width: 100%; font-family: monospace; box-shadow: inset 0 0 20px rgba(0,0,0,0.5);">
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 15px; border-bottom: 1px dashed #1F2833; padding-bottom: 10px;">
+                        <span style="color: #666; font-weight: bold;">Estado:</span>
+                        <span id="diag-status" style="color: #555; font-weight: bold;">Esperando conexión...</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between;">
+                        <span style="color: #666; font-weight: bold;">Enrutamiento:</span>
+                        <span id="diag-route" style="color: #555; font-weight: bold; font-size: 14px;">Inactivo</span>
+                    </div>
+                </div>
+
             </div>
             <div class="col-main">
-                <div class="section-title">TABLA DE ENRUTAMIENTO LOCAL</div>
+                <div class="section-title">LISTA DE JUGADORES</div>
                 <div id="friends-list" style="overflow-y: auto; flex:1;"></div>
             </div>
         </div>
@@ -165,73 +184,65 @@
         <div id="tab-chat" class="tab-content">
             <div class="chat-container">
                 <div class="chat-messages" id="chat-box">
-                    <div class="sys-msg">[ PROTOCOLO OFFLINE. ÚNETE A UNA SALA PARA ABRIR EL CANAL ]</div>
+                    <div class="sys-msg">Únete a una sala para abrir el chat.</div>
                 </div>
                 <div class="chat-input-area">
-                    <input id="chat-input" placeholder="Terminal lista..." disabled onkeypress="handleChat(event)">
+                    <input id="chat-input" placeholder="Escribe un mensaje..." disabled onkeypress="handleChat(event)">
                 </div>
             </div>
         </div>
 
         <div id="tab-perfil" class="tab-content">
             <div class="col-main" style="align-items: center; justify-content: flex-start; max-width: 600px; margin: 0 auto; padding-top: 40px;">
-                <div class="section-title" style="width: 100%;">IDENTIDAD DEL AGENTE</div>
+                <div class="section-title" style="width: 100%;">MI PERFIL</div>
                 
                 <div class="profile-page-avatar" id="ui-avatar-page" onclick="document.getElementById('profile-upload').click()">
-                    ? <div class="change-label">MODIFICAR IMAGEN</div>
+                    ? <div class="change-label">Cambiar Avatar</div>
                 </div>
                 
-                <label style="width: 100%;">DESIGNACIÓN (NOMBRE)</label>
+                <label style="width: 100%;">NOMBRE DE USUARIO</label>
                 <input id="my-name" placeholder="Tu Nickname" style="margin-bottom: 15px; font-size: 16px;">
                 
-                <label style="width: 100%;">FIRMA ÚNICA</label>
-                <input id="my-id-display-page" readonly style="font-family: monospace; color: #45F0D1; background: #000; cursor: pointer; font-size: 16px;" onclick="copyToClipboard(this.value, 'FIRMA COPIADA')">
+                <label style="width: 100%;">ID DE JUGADOR</label>
+                <input id="my-id-display-page" readonly style="font-family: monospace; color: #45F0D1; background: #000; cursor: pointer; font-size: 16px;" onclick="copyToClipboard(this.value, 'ID Copiado')">
                 
                 <div style="display: flex; gap: 10px; width: 100%; margin-top: 30px;">
                     <button onclick="backupIdentity()" class="btn-action" style="flex:1;">
-                        <i data-lucide="save" style="width: 16px;"></i> RESPALDAR DATOS
+                        <i data-lucide="save" style="width: 16px;"></i> Guardar Identidad
                     </button>
                     <button onclick="document.getElementById('file-input').click()" class="btn-action" style="flex:1;">
-                        <i data-lucide="upload-cloud" style="width: 16px;"></i> CARGAR PERFIL
+                        <i data-lucide="upload-cloud" style="width: 16px;"></i> Cargar Identidad
                     </button>
                 </div>
-
-                <div class="section-title" style="width: 100%; margin-top: 40px; border-color: #333;">DIAGNÓSTICO DEL TÚNEL (P2P / RELAY)</div>
-                <div style="background: #050608; border: 1px solid #1F2833; padding: 20px; border-radius: 4px; width: 100%; font-family: monospace; box-shadow: inset 0 0 20px rgba(0,0,0,0.5);">
-                    <div style="display: flex; justify-content: space-between; margin-bottom: 15px; border-bottom: 1px dashed #1F2833; padding-bottom: 10px;">
-                        <span style="color: #666; font-weight: bold;">ESTADO DEL ENLACE:</span>
-                        <span id="diag-status" style="color: #555; font-weight: bold;">ESPERANDO TÚNEL...</span>
-                    </div>
-                    <div style="display: flex; justify-content: space-between;">
-                        <span style="color: #666; font-weight: bold;">MÉTODO DE ENRUTAMIENTO:</span>
-                        <span id="diag-route" style="color: #555; font-weight: bold; font-size: 14px;">[ OFFLINE ]</span>
-                    </div>
-                </div>
-
             </div>
         </div>
 
     </div>
 
+    <input type="file" id="file-input" accept=".mimic" onchange="restoreIdentity(this)" style="display: none; position: absolute; top: -100px;">
+    <input type="file" id="profile-upload" accept="image/png, image/jpeg" onchange="handleProfilePicture(this)" style="display: none; position: absolute; top: -100px;">
     <div class="hidden">
         <input id="ip-virtual">
         <input id="puerto-local" value="5000">
-        <input id="ip-virtual-display"> 
-        <input type="file" id="file-input" accept=".mimic" onchange="restoreIdentity(this)">
-        <input type="file" id="profile-upload" accept="image/png, image/jpeg" onchange="handleProfilePicture(this)">
     </div>
 
     <div class="status-bar">
-        <div style="display:flex; gap:10px; align-items:center;"><div id="ping-dot" style="width:8px; height:8px; background:#333; border-radius:50%; box-shadow: 0 0 5px #000;"></div><span id="log-text">SISTEMA AISLADO</span></div>
-        <div style="display:flex; gap:10px; align-items:center;"><span id="nat-status" style="font-weight:bold; color:#555; margin-right:10px;">NAT: --</span><span style="color:#222">|</span><span id="route-type" style="color:#555;">[ OFFLINE ]</span><div id="traffic-led" style="width:6px; height:6px; background:#333; border-radius:50%;"></div></div>
+        <div style="display:flex; gap:10px; align-items:center;">
+            <div id="ping-dot" style="width:8px; height:8px; background:#333; border-radius:50%; box-shadow: 0 0 5px #000;"></div>
+            <span id="log-text">Desconectado</span>
+        </div>
+        <div style="display:flex; gap:10px; align-items:center;">
+            <span id="nat-status" style="font-weight:bold; color:#555; margin-right:10px;">NAT: --</span>
+            <span style="color:#222">|</span>
+            <span id="route-type" style="color:#555;">Inactivo</span>
+        </div>
     </div>
+    
     <div id="toast-container"></div>
 
     <script type="module">
-        // Inicializar Iconos Minimalistas
         lucide.createIcons();
 
-        // Lógica de Pestañas
         window.switchTab = (tabId, element) => {
             document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
             document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
@@ -239,20 +250,20 @@
             element.classList.add('active');
         };
 
-        // Lógica Foto Híbrida
         window.handleProfilePicture = (input) => {
             const file = input.files[0];
             if (!file) return;
-            if (file.size > 2000000) { showToast("Carga denegada (Máximo 2MB)", "error"); return; } 
+            if (file.size > 2000000) { showToast("Imagen muy pesada (Máx 2MB)", "error"); return; } 
 
             const reader = new FileReader();
             reader.onload = (e) => {
                 const base64Img = e.target.result;
                 localStorage.setItem('mimic_avatar', base64Img);
                 setAvatarUI(base64Img);
-                showToast("Identidad visual actualizada", "success");
+                showToast("Avatar actualizado", "success");
             };
             reader.readAsDataURL(file);
+            input.value = ""; // Limpiar input para poder subir la misma foto después si se borra
         };
         
         function setAvatarUI(imgData) {
@@ -282,18 +293,16 @@
         let ws; let vpnStarted = false; let myPrivateKey = ""; let myLocalIp = ""; let myStunPort = null; let myPublicIp = ""; let reconnectAttempts = 0; let currentRoomCode = ""; let amIHost = false;
 
         async function checkForUpdates() {
-            try { const update = await check(); if (update) { showToast(`NUEVA VERSIÓN DETECTADA: ${update.version}`, "info"); await update.downloadAndInstall(); await relaunch(); } } catch (e) {}
+            try { const update = await check(); if (update) { showToast(`Nueva versión detectada: ${update.version}`, "info"); await update.downloadAndInstall(); await relaunch(); } } catch (e) {}
         }
         checkForUpdates();
 
-        // TOASTS MINIMALISTAS
         window.showToast=(m,t="info")=>{const c=document.getElementById('toast-container');const e=document.createElement('div');e.className=`toast ${t}`;
-            const tag = t === 'error' ? 'FAIL' : ' OK ';
             const color = t === 'error' ? '#DC2626' : '#10B981';
-            e.innerHTML=`<span style="color: ${color};">[ ${tag} ]</span><span>${m}</span>`;
+            e.innerHTML=`<span style="color: ${color}; font-size:16px;">${t==='error'?'⚠️':'✓'}</span><span>${m}</span>`;
             c.appendChild(e);setTimeout(()=>e.classList.add('show'),10);setTimeout(()=>{e.classList.remove('show');setTimeout(()=>e.remove(),300);},3000);
         };
-        window.copyToClipboard=(t,m)=>{navigator.clipboard.writeText(t);showToast(m||"PORTAPAPELES ACTUALIZADO");};
+        window.copyToClipboard=(t,m)=>{navigator.clipboard.writeText(t);showToast(m||"Copiado");};
         
         const audioCtx=new(window.AudioContext||window.webkitAudioContext)();
         function playSound(t){if(audioCtx.state==='suspended')audioCtx.resume();const o=audioCtx.createOscillator();const g=audioCtx.createGain();o.connect(g);g.connect(audioCtx.destination);if(t==='msg'){o.type='sine';o.frequency.setValueAtTime(800,audioCtx.currentTime);o.frequency.exponentialRampToValueAtTime(400,audioCtx.currentTime+0.1);g.gain.setValueAtTime(0.1,audioCtx.currentTime);g.gain.exponentialRampToValueAtTime(0.01,audioCtx.currentTime+0.1);o.start();o.stop(audioCtx.currentTime+0.1);}else if(t==='join'){o.type='triangle';o.frequency.setValueAtTime(440,audioCtx.currentTime);o.frequency.linearRampToValueAtTime(880,audioCtx.currentTime+0.2);g.gain.setValueAtTime(0.1,audioCtx.currentTime);g.gain.linearRampToValueAtTime(0,audioCtx.currentTime+0.3);o.start();o.stop(audioCtx.currentTime+0.3);}}
@@ -322,32 +331,68 @@
         
         let friends=JSON.parse(localStorage.getItem('mimic_friends'))||[];
         
-        window.backupIdentity = () => { const d = { id: myId, name: savedName, friends, pwd: localStorage.getItem('mimic_last_pwd') }; const b = new Blob([JSON.stringify(d)], {type: "application/json"}); const a = document.createElement('a'); a.href = URL.createObjectURL(b); a.download = `mimic_${d.name}.mimic`; a.click(); showToast("DATOS EXPORTADOS", "success"); };
-        window.restoreIdentity = (input) => { const f = input.files[0]; if(!f) return; const r = new FileReader(); r.onload = (e) => { try { const d = JSON.parse(e.target.result); if(d.id) localStorage.setItem('mimic_id', d.id); if(d.name) localStorage.setItem('mimic_name', d.name); if(d.friends) localStorage.setItem('mimic_friends', JSON.stringify(d.friends)); if(d.pwd) localStorage.setItem('mimic_last_pwd', d.pwd); showToast("SISTEMA RESTAURADO. REINICIANDO...", "success"); setTimeout(() => location.reload(), 1500); } catch(err) { showToast("ARCHIVOS CORRUPTOS", "error"); } }; r.readAsText(f); };
+        window.backupIdentity = () => { const d = { id: myId, name: savedName, friends, pwd: localStorage.getItem('mimic_last_pwd') }; const b = new Blob([JSON.stringify(d)], {type: "application/json"}); const a = document.createElement('a'); a.href = URL.createObjectURL(b); a.download = `mimic_${d.name}.mimic`; a.click(); showToast("Datos guardados", "success"); };
+        window.restoreIdentity = (input) => { const f = input.files[0]; if(!f) return; const r = new FileReader(); r.onload = (e) => { try { const d = JSON.parse(e.target.result); if(d.id) localStorage.setItem('mimic_id', d.id); if(d.name) localStorage.setItem('mimic_name', d.name); if(d.friends) localStorage.setItem('mimic_friends', JSON.stringify(d.friends)); if(d.pwd) localStorage.setItem('mimic_last_pwd', d.pwd); showToast("Restaurando... Reiniciando", "success"); setTimeout(() => location.reload(), 1500); } catch(err) { showToast("Archivo corrupto", "error"); } }; r.readAsText(f); };
 
-        window.addFriend=()=>{const c=document.getElementById('friend-code-input').value.trim().toUpperCase();if(!c||c===myId||friends.some(f=>f.id===c))return;friends.push({id:c,name:`AGENTE ${c}`});localStorage.setItem('mimic_friends',JSON.stringify(friends));renderFriends([]);document.getElementById('friend-code-input').value="";};
-        window.kickPlayer=(id)=>{ if(confirm("¿PURGAR CONEXIÓN SELECCIONADA?")) ws.send(JSON.stringify({type:'KICK', room: currentRoomCode, targetId: id})); };
+        window.addFriend=()=>{const c=document.getElementById('friend-code-input').value.trim().toUpperCase();if(!c||c===myId||friends.some(f=>f.id===c))return;friends.push({id:c,name:`Jugador ${c}`});localStorage.setItem('mimic_friends',JSON.stringify(friends));renderFriends([]);document.getElementById('friend-code-input').value="";};
+        window.kickPlayer=(id)=>{ if(confirm("¿Expulsar jugador?")) ws.send(JSON.stringify({type:'KICK', room: currentRoomCode, targetId: id})); };
 
+        // CORE BUGFIX 1: Amigos Offline resuelto
         function renderFriends(onlinePlayers){
-            const l=document.getElementById('friends-list');l.innerHTML="";
+            const l=document.getElementById('friends-list');
+            l.innerHTML="";
+            
+            if (friends.length === 0) {
+                l.innerHTML = "<div style='text-align:center;color:#444;font-size:12px;margin-top:20px;'>Añade a tus amigos por su ID para localizarlos.</div>";
+            }
+
             friends.forEach(f=>{
-                const o=onlinePlayers.find(p=>p.id===f.id);
-                const s=o?(o.status==="Jugando"?"playing":"online"):"";
-                if(o)f.name=o.name;
-                const ip=o&&o.virtualIp?o.virtualIp:"OFFLINE";
+                // Buscamos coincidencia estricta en mayúsculas
+                const o = onlinePlayers.find(p => p.id.toUpperCase() === f.id.toUpperCase());
+                const s = o ? (o.status==="Jugando" ? "playing" : "online") : "";
+                if(o) f.name = o.name;
+                
+                const ip = o && o.virtualIp ? o.virtualIp : "Desconectado";
                 let actions = "";
-                if(o) actions += `<button class="btn-action" style="font-size:10px; padding:4px 8px; margin-left:10px;" onclick="event.stopPropagation();sendFile('${ip}')">[ ENVIAR ]</button>`;
-                if(amIHost && o && o.id !== myId) actions += `<button class="btn-action" style="background:#991B1B; border-color:#991B1B; padding:4px 8px; margin-left:10px;" onclick="event.stopPropagation();kickPlayer('${f.id}')">[ PURGAR ]</button>`;
-                l.innerHTML+=`<div class="card-item" onclick="copyToClipboard('${ip}','IP COPIADA')"><div class="f-avatar ${s}">${f.name.charAt(0).toUpperCase()}</div><div class="f-info"><div class="f-name ${s}">${f.name.toUpperCase()}</div><div class="f-ip ${o?"visible":""}">${ip}</div></div>${actions}</div>`;
+                
+                if(o) actions += `<button class="btn-action" style="font-size:10px; padding:4px 8px; margin-left:10px;" onclick="event.stopPropagation();sendFile('${ip}')">Enviar Archivo</button>`;
+                if(amIHost && o && o.id !== myId) actions += `<button class="btn-action" style="background:#991B1B; border-color:#991B1B; padding:4px 8px; margin-left:10px;" onclick="event.stopPropagation();kickPlayer('${f.id}')">Expulsar</button>`;
+                
+                l.innerHTML+=`<div class="card-item" onclick="copyToClipboard('${ip}','IP Copiada')"><div class="f-avatar ${s}">${f.name.charAt(0).toUpperCase()}</div><div class="f-info"><div class="f-name ${s}">${f.name}</div><div class="f-ip ${o?"visible":""}">${ip}</div></div>${actions}</div>`;
             });
             localStorage.setItem('mimic_friends',JSON.stringify(friends));
         }
 
-        window.handleChat=(e)=>{if(e.key==='Enter'){const i=document.getElementById('chat-input');const t=i.value.trim();if(t){ws.send(JSON.stringify({type:'CHAT',sender:savedName,text:t}));i.value="";}}};
-        function addChatMessage(s,t,sys=false){const b=document.getElementById('chat-box');const d=document.createElement('div');d.className="msg";if(sys){d.className="sys-msg"; d.innerHTML=`[ ${t} ]`;}else{d.innerHTML=`<span class="msg-sender">${s.toUpperCase()}</span><span class="msg-text">${t}</span>`;}b.appendChild(d);b.scrollTop=b.scrollHeight;}
+        // CORE BUGFIX 2: El Host ahora ve sus propios mensajes inmediatamente
+        window.handleChat=(e)=>{
+            if(e.key==='Enter'){
+                const i=document.getElementById('chat-input');
+                const t=i.value.trim();
+                if(t){
+                    ws.send(JSON.stringify({type:'CHAT',sender:savedName,text:t}));
+                    // Eco local
+                    addChatMessage(savedName, t);
+                    i.value="";
+                }
+            }
+        };
+        
+        function addChatMessage(s,t,sys=false){
+            const b=document.getElementById('chat-box');
+            const d=document.createElement('div');
+            d.className="msg";
+            if(sys){
+                d.className="sys-msg"; 
+                d.innerHTML=`${t}`;
+            } else {
+                d.innerHTML=`<span class="msg-sender">${s}</span><span class="msg-text">${t}</span>`;
+            }
+            b.appendChild(d);
+            b.scrollTop=b.scrollHeight;
+        }
         
         async function getMyLocalIp() { try { myLocalIp = await invoke("obtener_ip_local_cmd"); } catch(e){} }
-        listen('stun-result', (event) => { const [ip, port] = event.payload; myStunPort = port; myPublicIp = ip; showToast(`NAT ABIERTA (P:${port})`, "info"); });
+        listen('stun-result', (event) => { const [ip, port] = event.payload; myStunPort = port; myPublicIp = ip; showToast(`NAT Abierta (P:${port})`, "info"); });
 
         async function connectToBestRoute(msg) {
             let wanPort = msg.peer_port; await invoke("agregar_peer", { ipDestino: msg.peer_ip + ":" + wanPort, ipVirtual: msg.peer_virtual_ip });
@@ -356,39 +401,38 @@
                 await invoke("agregar_peer", { ipDestino: msg.peer_local_ip + ":" + document.getElementById('puerto-local').value, ipVirtual: msg.peer_virtual_ip });
                 if (myLocalIp.split('.')[0] === msg.peer_local_ip.split('.')[0]) routeType = "LAN 🏠";
             }
-            // Mantenemos la lógica de UI por si acaso, pero el Sonar lo sobrescribirá
         }
 
-        window.sendFile=async(ip)=>{if(ip==="OFFLINE")return;try{const r=await invoke("enviar_archivo",{ipDestino:ip});if(r.includes("Enviando"))showToast("TRANSMISIÓN INICIADA","info");}catch(e){}};
-        listen('archivo-recibido',(e)=>{playSound('join');showToast(`PAQUETE RECIBIDO: ${e.payload}`,"info");});
+        window.sendFile=async(ip)=>{if(ip==="Desconectado")return;try{const r=await invoke("enviar_archivo",{ipDestino:ip});if(r.includes("Enviando"))showToast("Transmisión iniciada","info");}catch(e){}};
+        listen('archivo-recibido',(e)=>{playSound('join');showToast(`Archivo recibido: ${e.payload}`,"info");});
 
         async function startVpnEngine(sharedKey) {
             if(vpnStarted) return;
             try {
-                document.getElementById('log-text').textContent = "NEGOCIANDO CIFRADO...";
+                document.getElementById('log-text').textContent = "Conectando...";
                 await invoke("iniciar_vpn", { puertoLocal: document.getElementById('puerto-local').value, ipVirtual: myAutoIp, claveB64: sharedKey });
                 vpnStarted = true;
-                document.getElementById('log-text').textContent = `ENLACE ESTABLECIDO`; document.getElementById('log-text').style.color="#45F0D1";
+                document.getElementById('log-text').textContent = `En línea`; document.getElementById('log-text').style.color="#45F0D1";
                 document.getElementById('ping-dot').style.background="#45F0D1"; document.getElementById('ping-dot').style.boxShadow="0 0 8px #45F0D1";
-                checkNat(); showToast("TÚNEL OPERATIVO", "info");
+                checkNat(); showToast("Conexión establecida", "info");
             } catch(e) {}
         }
         async function checkNat() { try{ const p=parseInt(document.getElementById('puerto-local').value); await invoke("intentar_upnp",{puertoInterno:p}); document.getElementById('nat-status').textContent="NAT: ABIERTA"; document.getElementById('nat-status').style.color="#10B981"; }catch(e){} }
         
-        window.fixNetwork = async () => { showToast("RECALCULANDO TABLAS WINTUN...", "info"); try { const r = await invoke("forzar_prioridad"); showToast("TABLAS APLICADAS", "success"); playSound('join'); } catch(e) { showToast("FALLO DE KERNEL", "error"); } };
+        window.fixNetwork = async () => { showToast("Reparando red...", "info"); try { const r = await invoke("forzar_prioridad"); showToast("Red reparada", "success"); playSound('join'); } catch(e) { showToast("Error de permisos", "error"); } };
         
         async function autoEnableRelay() { try { await invoke("activar_relay", { serverIp: RELAY_SERVER, miIpVirtual: myAutoIp }); } catch(e) {} }
 
-        // --- SONAR: LECTURA DE TELEMETRÍA DE RUST ---
+        // DIAGNÓSTICO EN RED PRIVADA
         listen('ruta-activa', (e) => {
             const route = e.payload;
             const diagRoute = document.getElementById('diag-route');
             const diagStatus = document.getElementById('diag-status');
             const statusBarRoute = document.getElementById('route-type'); 
             
-            diagRoute.textContent = `[ ${route} ]`;
-            statusBarRoute.textContent = `[ ${route} ]`;
-            diagStatus.textContent = "CONEXIÓN ESTABLECIDA Y VERIFICADA";
+            diagRoute.textContent = `${route}`;
+            statusBarRoute.textContent = `${route}`;
+            diagStatus.textContent = "Establecida";
             diagStatus.style.color = "#45F0D1";
             
             if(route === "P2P DIRECTO") {
@@ -413,47 +457,58 @@
         listen('stats-salida',(e)=>{const n = e.payload; animateLed(); trafficHistory.push(n); trafficHistory.shift(); drawGraph(); });
         function animateLed(){const l=document.getElementById('traffic-led');l.style.background="#45F0D1";setTimeout(()=>{l.style.background="#333";},50);}
 
+        // CORE BUGFIX 3: Evitar el Spam del juego
+        let currentGame = document.getElementById('my-game').value;
         setInterval(async () => {
-            try { const g = await invoke("detectar_juego"); if(g && g!==document.getElementById('my-game').value) { document.getElementById('my-game').value=g.toUpperCase(); if(ws.readyState===1) sendLogin(); showToast(`SISTEMA DETECTADO: ${g.toUpperCase()}`,"info"); } } catch(e){}
+            try { 
+                const g = await invoke("detectar_juego"); 
+                if(g && g.toUpperCase() !== currentGame.toUpperCase()) { 
+                    currentGame = g;
+                    document.getElementById('my-game').value = currentGame; 
+                    if(ws.readyState===1) sendLogin(); 
+                    showToast(`Jugando a ${currentGame}`,"info"); 
+                } 
+            } catch(e){}
         }, 5000);
 
         // --- WEBSOCKET ---
         function connect() {
-            document.getElementById('server-status').textContent="SINCRO..."; ws=new WebSocket(SERVER_URL);
+            document.getElementById('server-status').textContent="Conectando..."; ws=new WebSocket(SERVER_URL);
             ws.onopen=async ()=>{ 
                 reconnectAttempts=0; 
-                document.getElementById('server-status').textContent="EN LÍNEA";document.getElementById('server-status').style.color="#45F0D1"; 
+                document.getElementById('server-status').textContent="En Línea";document.getElementById('server-status').style.color="#45F0D1"; 
                 await getMyLocalIp(); sendLogin(); autoEnableRelay();
             };
             ws.onmessage=async(e)=>{
                 const msg=JSON.parse(e.data);
                 if(msg.type==='STATE_UPDATE'){renderLobbies(msg.lobbies);renderFriends(msg.players);}
                 if(msg.type==='ERROR'){showToast(msg.message,'error');}
-                if(msg.type==='KICKED'){showToast("CONEXIÓN PURGADA",'error'); setTimeout(()=>location.reload(), 2000); }
+                if(msg.type==='KICKED'){showToast("Has sido expulsado de la sala",'error'); setTimeout(()=>location.reload(), 2000); }
                 
                 if(msg.type==='MATCH'){
                     if(msg.role === 'HOST') amIHost = true; 
-                    if(!friends.some(f=>f.id === msg.peer_id)) { friends.push({id:msg.peer_id, name:"AGENTE DESCONOCIDO"}); }
+                    if(!friends.some(f=>f.id === msg.peer_id)) { friends.push({id:msg.peer_id, name:"Jugador Desconocido"}); }
                     const sharedSecret = await invoke("calcular_secreto", { miPrivada: myPrivateKey, suPublica: msg.peer_public_key });
                     
                     await startVpnEngine(sharedSecret); 
                     await connectToBestRoute(msg);
 
-                    // HOLE PUNCHING TRIGGER
                     if (msg.peer_ip && msg.peer_port) {
-                        showToast("PERFORANDO RUTAS DE RED...", "info");
                         invoke("forzar_hole_punch", { ipPublica: msg.peer_ip, puerto: msg.peer_port });
                     }
 
-                    enableChat(); playSound('join'); showToast("ENLACE SEGURO CONFIRMADO","info");
+                    enableChat(); playSound('join');
                 }
 
                 if(msg.type==='CHAT_MSG'){
-                    addChatMessage(msg.sender,msg.text);
-                    if(document.hidden || !document.getElementById('tab-chat').classList.contains('active')) playSound('msg');
+                    // Evitar duplicar el propio mensaje si el servidor decide reenviarlo
+                    if (msg.sender !== savedName) {
+                        addChatMessage(msg.sender,msg.text);
+                        if(document.hidden || !document.getElementById('tab-chat').classList.contains('active')) playSound('msg');
+                    }
                 }
             };
-            ws.onclose=()=>{ vpnStarted=false; document.getElementById('server-status').textContent="OFFLINE"; document.getElementById('server-status').style.color="#555"; setTimeout(() => { reconnectAttempts++; connect(); }, Math.min(2000*(reconnectAttempts+1),30000)); };
+            ws.onclose=()=>{ vpnStarted=false; document.getElementById('server-status').textContent="Desconectado"; document.getElementById('server-status').style.color="#555"; setTimeout(() => { reconnectAttempts++; connect(); }, Math.min(2000*(reconnectAttempts+1),30000)); };
         }
         function sendLogin(){ws.send(JSON.stringify({type:'LOGIN',id:myId,name:document.getElementById('my-name').value,virtualIp:myAutoIp, localIp: myLocalIp}));}
 
@@ -468,7 +523,7 @@
             
             let inviteLink = `mimic://join/${code}`;
             if(pwd) inviteLink += `?pwd=${pwd}`;
-            copyToClipboard(inviteLink, "ENLACE COPIADO AL PORTAPAPELES");
+            copyToClipboard(inviteLink, "Enlace copiado al portapapeles");
             amIHost = true;
         });
         
@@ -476,7 +531,7 @@
             currentRoomCode = code;
             let pwd=""; 
             if(directPwd) pwd = directPwd;
-            else if(hasPwd){pwd=prompt("INTRODUZCA CLAVE DE CIFRADO:")||"";}
+            else if(hasPwd){pwd=prompt("Contraseña de la sala:")||"";}
             
             const keys = await invoke("generar_identidad"); myPrivateKey = keys[0];
             const portToSend = myStunPort || document.getElementById('puerto-local').value;
@@ -484,8 +539,8 @@
             amIHost = false;
         };
 
-        function enableChat(){document.getElementById('chat-input').disabled=false;document.getElementById('chat-status').style.color="#45F0D1";document.getElementById('chat-box').innerHTML="";addChatMessage("","CANAL SEGURO ABIERTO",true);}
-        function renderLobbies(l){const list=document.getElementById('lobby-list');list.innerHTML="";Object.keys(l).forEach(c=>{const o=l[c];list.innerHTML+=`<div class="card-item"><div><div style="font-weight:bold;color:#fff;letter-spacing:0.5px;">${o.hasPassword?"[ SEC ] ":""}${o.gameName.toUpperCase()}</div><div style="font-size:10px;color:#666;text-transform:uppercase;margin-top:4px;">HOST: ${o.hostName}</div></div><button class="btn-action" onclick="window.join('${c}',${o.hasPassword})">${o.hasPassword?"[ DESCIFRAR ]":"[ ENLAZAR ]"}</button></div>`;});if(!list.innerHTML)list.innerHTML="<div style='text-align:center;color:#333;font-weight:bold;margin-top:40px;text-transform:uppercase;letter-spacing:2px;'>[ NINGUNA SEÑAL DETECTADA ]</div>";}
+        function enableChat(){document.getElementById('chat-input').disabled=false;document.getElementById('chat-status').style.color="#45F0D1";document.getElementById('chat-box').innerHTML="";addChatMessage("","Estás conectado. Ya puedes hablar.",true);}
+        function renderLobbies(l){const list=document.getElementById('lobby-list');list.innerHTML="";Object.keys(l).forEach(c=>{const o=l[c];list.innerHTML+=`<div class="card-item"><div><div style="font-weight:bold;color:#fff;">${o.hasPassword?"🔒 ":""}${o.gameName}</div><div style="font-size:11px;color:#888;margin-top:4px;">Host: ${o.hostName}</div></div><button class="btn-action" onclick="window.join('${c}',${o.hasPassword})">${o.hasPassword?"Entrar":"Unirse"}</button></div>`;});if(!list.innerHTML)list.innerHTML="<div style='text-align:center;color:#444;font-size:12px;margin-top:40px;'>No hay salas públicas disponibles.</div>";}
         connect();
     </script>
 </body>
