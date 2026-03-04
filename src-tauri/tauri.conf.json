@@ -1,0 +1,51 @@
+{
+  "productName": "mimic-app",
+  "version": "1.0.1",
+  "identifier": "com.mimic.vpn",
+  "build": {
+    "beforeDevCommand": "npm run dev",
+    "beforeBuildCommand": "npm run build",
+    "devUrl": "http://localhost:1420",
+    "frontendDist": "../dist"
+  },
+  "app": {
+    "withGlobalTauri": true,
+    "windows": [
+      {
+        "title": "Mimic Hub",
+        "width": 900,
+        "height": 600,
+        "resizable": false,
+        "maximizable": false,
+        "fullscreen": false,
+        "center": true
+      }
+    ],
+    "security": {
+      "csp": null
+    }
+  },
+  "bundle": {
+    "active": true,
+    "targets": ["nsis"],
+    "icon": [
+      "icons/32x32.png",
+      "icons/128x128.png",
+      "icons/icon.icns",
+      "icons/icon.ico"
+    ],
+    "copyright": "Copyright (c) 2026 Alberto Alvarez Gonzalez",
+    "resources": [
+      "wintun.dll"
+    ]
+  },
+  "plugins": {
+    "updater": {
+      "endpoints": [
+        "https://github.com/Josshiii/mimic-hub/releases/latest/download/update.json"
+      ],
+      "pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IEY5RkNBMTg3QjE4RjZBNzcKUldSM2FvK3hoNkg4K1VTSU1lUVpPWDFkd1JMZ2g4ZzUyT09UVzBmSGx0SEdOaXhFbk9LYlFDa3IK
+"
+    }
+  }
+}

@@ -1,0 +1,54 @@
+name: Release Mimic VPN
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  build-windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Install Rust
+        uses: dtolnay/rust-toolchain@stable
+
+      - name: Install dependencies (Frontend)
+        run: npm install
+
+      # PASO CLAVE: Mover wintun.dll A LA CARPETA src-tauri
+      - name: Prepare Driver for Bundling
+        shell: powershell
+        run: |
+          $dll = Get-ChildItem -Path . -Recurse -Filter "wintun.dll" | Select-Object -First 1
+          
+          if ($dll) {
+             Write-Host "✅ Driver encontrado en: $($dll.FullName)"
+             # Copiarlo a src-tauri (para que el instalador lo vea)
+             Copy-Item -Path $dll.FullName -Destination src-tauri\wintun.dll -Force
+             # Copiarlo también a target/debug (por si acaso el compilador lo pide)
+             New-Item -ItemType Directory -Force -Path src-tauri\target\debug
+             Copy-Item -Path $dll.FullName -Destination src-tauri\target\debug\wintun.dll -Force
+             
+             Write-Host "✨ LISTO: Driver colocado en la pista de despegue."
+          } else {
+             Write-Error "❌ ERROR FATAL: No encuentro wintun.dll en el repositorio."
+             exit 1
+          }
+
+      - name: Build App
+        run: npm run tauri build
+
+      - name: Upload Installer
+        uses: actions/upload-artifact@v4
+        with:
+          name: Mimic-Installer
+          # --- CAMBIO AQUÍ ---
+          # Antes buscaba en 'msi', ahora busca en 'nsis' y archivos .exe
+          path: src-tauri/target/release/bundle/nsis/*.exe 
+          if-no-files-found: warn
