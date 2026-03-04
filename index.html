@@ -18,10 +18,10 @@
         .nav-btn:hover .nav-tooltip { opacity: 1; transform: translateX(5px); }
 
         /* CONTENEDOR PRINCIPAL */
-        .main-container { flex: 1; display: flex; flex-direction: column; background: #0B0C10; }
+        .main-container { flex: 1; display: flex; flex-direction: column; background: #0B0C10; position: relative; }
         
         /* BARRA SUPERIOR */
-        .top-bar { height: 70px; background: #12161A; border-bottom: 1px solid #1F2833; display: flex; justify-content: space-between; align-items: center; padding: 0 25px; }
+        .top-bar { height: 70px; min-height: 70px; background: #12161A; border-bottom: 1px solid #1F2833; display: flex; justify-content: space-between; align-items: center; padding: 0 25px; }
         .ip-display-container { display: flex; flex-direction: column; cursor: pointer; transition: 0.2s; padding: 5px 10px; border-radius: 4px; border: 1px dashed transparent; }
         .ip-display-container:hover { border-color: #45F0D1; background: rgba(69,240,209,0.05); }
         .ip-label { font-size: 10px; font-weight: 800; color: #666; text-transform: uppercase; letter-spacing: 1px; }
@@ -36,7 +36,7 @@
         /* PESTAÑAS Y COLUMNAS */
         .tab-content { flex: 1; display: none; flex-direction: row; overflow: hidden; }
         .tab-content.active { display: flex; }
-        .col-left { width: 250px; background: #0B0C10; border-right: 1px solid #1F2833; padding: 25px; overflow-y: auto; } /* Más espacio para las salas */
+        .col-left { width: 250px; background: #0B0C10; border-right: 1px solid #1F2833; padding: 25px; overflow-y: auto; }
         .col-main { flex: 1; background: #0B0C10; padding: 25px; display: flex; flex-direction: column; overflow-y: auto; }
 
         /* FORMULARIOS */
@@ -81,7 +81,7 @@
         .change-label { position: absolute; bottom: 0; left: 0; width: 100%; background: rgba(0,0,0,0.8); color: #fff; font-size: 11px; font-weight: bold; padding: 8px; text-transform: uppercase; text-align: center; border-radius: 0 0 8px 8px; opacity: 0; transition: 0.2s; }
 
         /* BARRA DE ESTADO & TOASTS */
-        .status-bar { height: 30px; background: #050608; border-top: 1px solid #1F2833; display: flex; align-items: center; justify-content: space-between; padding: 0 15px; font-size: 10px; color: #666; font-family: monospace; letter-spacing: 1px; text-transform: uppercase; z-index: 10; } 
+        .status-bar { height: 35px; min-height: 35px; background: #050608; border-top: 1px solid #1F2833; display: flex; align-items: center; justify-content: space-between; padding: 0 15px; font-size: 10px; color: #666; font-family: monospace; letter-spacing: 1px; text-transform: uppercase; z-index: 10; } 
         
         #toast-container { position: fixed; bottom: 50px; right: 20px; display: flex; flex-direction: column; gap: 10px; z-index: 1000; }
         .toast { background: #12161A; border-left: 3px solid #10B981; padding: 15px 20px; color: white; border-radius: 4px; font-size: 12px; font-weight: bold; box-shadow: 0 5px 15px rgba(0,0,0,0.8); transform: translateX(120%); transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); display: flex; align-items: center; gap: 12px; border: 1px solid #1F2833; font-family: 'Inter', sans-serif; } 
@@ -217,25 +217,23 @@
             </div>
         </div>
 
-    </div>
+        <div class="status-bar">
+            <div style="display:flex; gap:10px; align-items:center;">
+                <div id="ping-dot" style="width:8px; height:8px; background:#333; border-radius:50%; box-shadow: 0 0 5px #000;"></div>
+                <span id="log-text">Desconectado</span>
+            </div>
+            <div style="display:flex; gap:10px; align-items:center;">
+                <span id="nat-status" style="font-weight:bold; color:#555; margin-right:10px;">NAT: --</span>
+                <span style="color:#222">|</span>
+                <span id="route-type" style="color:#555;">Inactivo</span>
+            </div>
+        </div>
 
-    <input type="file" id="file-input" accept=".mimic" onchange="restoreIdentity(this)" style="display: none; position: absolute; top: -100px;">
-    <input type="file" id="profile-upload" accept="image/png, image/jpeg" onchange="handleProfilePicture(this)" style="display: none; position: absolute; top: -100px;">
-    <div class="hidden">
+    </div> <div style="display: none !important; opacity: 0; position: absolute; z-index: -9999;">
+        <input type="file" id="file-input" accept=".mimic" onchange="restoreIdentity(this)">
+        <input type="file" id="profile-upload" accept="image/png, image/jpeg" onchange="handleProfilePicture(this)">
         <input id="ip-virtual">
         <input id="puerto-local" value="5000">
-    </div>
-
-    <div class="status-bar">
-        <div style="display:flex; gap:10px; align-items:center;">
-            <div id="ping-dot" style="width:8px; height:8px; background:#333; border-radius:50%; box-shadow: 0 0 5px #000;"></div>
-            <span id="log-text">Desconectado</span>
-        </div>
-        <div style="display:flex; gap:10px; align-items:center;">
-            <span id="nat-status" style="font-weight:bold; color:#555; margin-right:10px;">NAT: --</span>
-            <span style="color:#222">|</span>
-            <span id="route-type" style="color:#555;">Inactivo</span>
-        </div>
     </div>
     
     <div id="toast-container"></div>
@@ -263,7 +261,7 @@
                 showToast("Avatar actualizado", "success");
             };
             reader.readAsDataURL(file);
-            input.value = ""; // Limpiar input para poder subir la misma foto después si se borra
+            input.value = ""; 
         };
         
         function setAvatarUI(imgData) {
@@ -337,7 +335,6 @@
         window.addFriend=()=>{const c=document.getElementById('friend-code-input').value.trim().toUpperCase();if(!c||c===myId||friends.some(f=>f.id===c))return;friends.push({id:c,name:`Jugador ${c}`});localStorage.setItem('mimic_friends',JSON.stringify(friends));renderFriends([]);document.getElementById('friend-code-input').value="";};
         window.kickPlayer=(id)=>{ if(confirm("¿Expulsar jugador?")) ws.send(JSON.stringify({type:'KICK', room: currentRoomCode, targetId: id})); };
 
-        // CORE BUGFIX 1: Amigos Offline resuelto
         function renderFriends(onlinePlayers){
             const l=document.getElementById('friends-list');
             l.innerHTML="";
@@ -347,7 +344,6 @@
             }
 
             friends.forEach(f=>{
-                // Buscamos coincidencia estricta en mayúsculas
                 const o = onlinePlayers.find(p => p.id.toUpperCase() === f.id.toUpperCase());
                 const s = o ? (o.status==="Jugando" ? "playing" : "online") : "";
                 if(o) f.name = o.name;
@@ -363,14 +359,14 @@
             localStorage.setItem('mimic_friends',JSON.stringify(friends));
         }
 
-        // CORE BUGFIX 2: El Host ahora ve sus propios mensajes inmediatamente
+        // CORRECCIÓN DEL CHAT: INYECTANDO EL ID DE LA SALA (ROOM)
         window.handleChat=(e)=>{
             if(e.key==='Enter'){
                 const i=document.getElementById('chat-input');
                 const t=i.value.trim();
                 if(t){
-                    ws.send(JSON.stringify({type:'CHAT',sender:savedName,text:t}));
-                    // Eco local
+                    // Ahora sí le decimos al servidor a qué sala pertenece este mensaje
+                    ws.send(JSON.stringify({type:'CHAT', room: currentRoomCode, sender:savedName, text:t}));
                     addChatMessage(savedName, t);
                     i.value="";
                 }
@@ -423,7 +419,6 @@
         
         async function autoEnableRelay() { try { await invoke("activar_relay", { serverIp: RELAY_SERVER, miIpVirtual: myAutoIp }); } catch(e) {} }
 
-        // DIAGNÓSTICO EN RED PRIVADA
         listen('ruta-activa', (e) => {
             const route = e.payload;
             const diagRoute = document.getElementById('diag-route');
@@ -457,7 +452,6 @@
         listen('stats-salida',(e)=>{const n = e.payload; animateLed(); trafficHistory.push(n); trafficHistory.shift(); drawGraph(); });
         function animateLed(){const l=document.getElementById('traffic-led');l.style.background="#45F0D1";setTimeout(()=>{l.style.background="#333";},50);}
 
-        // CORE BUGFIX 3: Evitar el Spam del juego
         let currentGame = document.getElementById('my-game').value;
         setInterval(async () => {
             try { 
@@ -471,7 +465,6 @@
             } catch(e){}
         }, 5000);
 
-        // --- WEBSOCKET ---
         function connect() {
             document.getElementById('server-status').textContent="Conectando..."; ws=new WebSocket(SERVER_URL);
             ws.onopen=async ()=>{ 
@@ -501,7 +494,6 @@
                 }
 
                 if(msg.type==='CHAT_MSG'){
-                    // Evitar duplicar el propio mensaje si el servidor decide reenviarlo
                     if (msg.sender !== savedName) {
                         addChatMessage(msg.sender,msg.text);
                         if(document.hidden || !document.getElementById('tab-chat').classList.contains('active')) playSound('msg');
