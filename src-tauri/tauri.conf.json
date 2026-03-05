@@ -40,13 +40,14 @@
     ]
   },
   "plugins": {
-  "updater": {
-    "endpoints": [
-      "https://github.com/TU_USUARIO_DE_GITHUB/mimic-hub/releases/latest/download/latest.json"
-    ],
-    "pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IEI1RTk3NUI0RDVFRjc4QQpSV1NLOTE1Tlc1ZGVDN0ZFMThxaThnVGdBSTIveTByOHJkZGVLeWllbDIvYUh1WXRmZWxncXpMSQo=",
-    "windows": {
-      "installMode": "passive"
+    "updater": {
+      "endpoints": [
+        "https://github.com/Josshiii/mimic-hub/releases/latest/download/latest.json"
+      ],
+      "pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IEI1RTk3NUI0RDVFRjc4QQpSV1NLOTE1Tlc1ZGVDN0ZFMThxaThnVGdBSTIveTByOHJkZGVLeWllbDIvYUh1WXRmZWxncXpMSQo=",
+      "windows": {
+        "installMode": "passive"
+      }
     }
   }
 }
