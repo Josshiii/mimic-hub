@@ -604,7 +604,7 @@ fn generar_clave_segura() -> String {
 }
 
 #[tauri::command]
-fn activar_relay(server_ip: String, mi_ip_virtual: String, app_handle: tauri::AppHandle) -> String {
+fn activar_relay(_server_ip: String, mi_ip_virtual: String, app_handle: tauri::AppHandle) -> String {
     let ip_maestra = "relay.mimic-hub.net:10000".to_string();
     if let Ok(mut guard) = RELAY_ADDRESS.lock() {
         *guard = Some(ip_maestra.clone());
@@ -774,7 +774,7 @@ fn iniciar_vpn(
 pub fn run() {
     tauri::Builder::default()
         .plugin(tauri_plugin_process::init())
-        .plugin(tauri_plugin_updater::init())   
+        .plugin(tauri_plugin_updater::Builder::new().build())
         .plugin(tauri_plugin_opener::init())
         .plugin(tauri_plugin_deep_link::init())
         .invoke_handler(tauri::generate_handler![
