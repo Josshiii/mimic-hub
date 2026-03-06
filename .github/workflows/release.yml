@@ -57,3 +57,5 @@ jobs:
           releaseBody: 'Actualización automática de arquitectura de red P2P.'
           releaseDraft: false
           prerelease: false
+          includeUpdaterJson: true
+          updaterJsonPreferNsis: true
