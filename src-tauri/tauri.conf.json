@@ -1,6 +1,6 @@
 {
   "productName": "mimic-app",
-  "version": "1.0.18",
+  "version": "1.0.19",
   "identifier": "com.mimic.vpn",
   "build": {
     "beforeDevCommand": "npm run dev",
@@ -44,7 +44,7 @@
       "endpoints": [
         "https://github.com/Josshiii/mimic-hub/releases/latest/download/latest.json"
       ],
-      "pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IEU1MjY0NDdENDQ5NUUzRUUKUldUdTQ1VkVmVVFtNVlXN3BiOFZWZTh0bVRVVG5YWTJER2FJZVVuaDBQSjArYW9WUS92K3BaUzgK",
+      "pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IDkyMjZGRDdDMTU3MzRBNkYKUldSdlNuTVZmUDBta3YzMElPSkVjWVJidE8wMHpXTzlTaDlaQlJCSlJoVnovWW5XYWxIYytDeUsK",
       "windows": {
         "installMode": "passive"
       }
