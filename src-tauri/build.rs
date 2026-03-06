@@ -29,7 +29,7 @@ fn main() {
   </asmv3:application>
 </assembly>
 "#);
-        
+
         // Aplicamos la configuración de Windows
         attrs = attrs.windows_attributes(windows);
     }
