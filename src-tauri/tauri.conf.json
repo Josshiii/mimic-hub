@@ -1,6 +1,6 @@
 {
   "productName": "mimic-app",
-  "version": "1.0.15",
+  "version": "1.0.15.1",
   "identifier": "com.mimic.vpn",
   "build": {
     "beforeDevCommand": "npm run dev",

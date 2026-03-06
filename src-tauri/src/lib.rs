@@ -10,7 +10,7 @@
  * la licencia AGPLv3 te obliga a hacer público el código fuente de tu producto.
  * * Para evitar esta obligación legal y usar Mimic Hub de forma privativa,
  * DEBES adquirir una Licencia Comercial Privada.
- * Contacto para licenciamiento de estudios: albertoalv71@gmail.com
+ * Contacto para licenciamiento de estudios: miimiic.hub@gmail.com
  */
 
 use byteorder::{BigEndian, ReadBytesExt};
@@ -45,7 +45,7 @@ use tauri::{
 };
 use x25519_dalek::{PublicKey, StaticSecret};
 
-// --- FUNCIÓN: BLINDAJE DE FIREWALL DESDE EL ARRANQUE ---
+// --- BLINDAJE DE FIREWALL ---
 fn forzar_reglas_firewall_windows() {
     #[cfg(target_os = "windows")]
     {
@@ -112,7 +112,7 @@ fn resolver_host(host: &str) -> Option<SocketAddr> {
 fn forzar_ip_inteligente(ip: String) {
     thread::spawn(move || {
         thread::sleep(Duration::from_secs(2));
-        println!("🤖 Iniciando configuración IP Inteligente para: {}", ip);
+        println!("Iniciando configuración IP Inteligente para: {}", ip);
         for i in 1..=15 {
             let ps_script = format!(
                 r#"
@@ -141,7 +141,7 @@ fn forzar_ip_inteligente(ip: String) {
 }
 
 fn configuracion_maestra(app_handle: tauri::AppHandle) {
-    let _ = app_handle.emit("server-log", "🛡️ Configurando Sistema...");
+    let _ = app_handle.emit("server-log", "Configurando Sistema...");
     let current_exe = env::current_exe().unwrap_or_default();
     let exe_path = current_exe.to_str().unwrap_or("mimic-app.exe").to_string();
 
@@ -455,8 +455,8 @@ fn iniciar_hilo_entrada<R: tauri::Runtime>(
                     let nonce = Nonce::from_slice(&buffer[..12]);
                     if let Ok(dec) = cipher.decrypt(nonce, &buffer[12..size]) {
                         if let Ok(orig) = decompress_size_prepended(&dec) {
-                            // 🚀 CORE FIX: AUTO-APRENDIZAJE DE NAT SIMÉTRICA (CONNECTION TRACKING)
-                            // Si logramos descifrar esto, el remitente es legítimo. Aprendemos su puerto.
+                            // CONNECTION TRACKING
+                            
                             if orig.len() >= 20 && orig != HEARTBEAT_MSG {
                                 let src_vip =
                                     format!("{}.{}.{}.{}", orig[12], orig[13], orig[14], orig[15]);
@@ -471,7 +471,7 @@ fn iniciar_hilo_entrada<R: tauri::Runtime>(
                                             let _ = app_handle.emit(
                                                 "server-log",
                                                 format!(
-                                                    "🎯 RUTA P2P APRENDIDA (NAT Penetrado): {}",
+                                                    "RUTA P2P APRENDIDA (NAT Penetrado): {}",
                                                     src
                                                 ),
                                             );
@@ -617,10 +617,9 @@ fn activar_relay(server_ip: String, mi_ip_virtual: String, app_handle: tauri::Ap
         "server-log",
         format!("🔗 Relay DNS inicializado: {}", ip_maestra),
     );
-    "Relay Configurado 🚀".to_string()
+    "Relay Configurado".to_string()
 }
 
-// --- CORE FIX: EL GATILLO DEL HOLE PUNCHING (ESTRATEGIA SHOTGUN) ---
 #[tauri::command]
 fn forzar_hole_punch(ip_publica: String, puerto: u16, app_handle: tauri::AppHandle) -> String {
     let socket_opt = {
@@ -632,10 +631,9 @@ fn forzar_hole_punch(ip_publica: String, puerto: u16, app_handle: tauri::AppHand
         thread::spawn(move || {
             let _ = app_handle.emit(
                 "server-log",
-                format!("💥 INICIANDO PERFORACIÓN SHOTGUN HACIA: {}", ip_publica),
+                format!("INICIANDO SHOTGUN HACIA: {}", ip_publica),
             );
 
-            // ESTRATEGIA SHOTGUN: Adivinación de puertos NAT Simétricos (+2, -2 puertos)
             let puertos_a_probar = [
                 puerto,
                 puerto.saturating_add(1),
@@ -645,7 +643,7 @@ fn forzar_hole_punch(ip_publica: String, puerto: u16, app_handle: tauri::AppHand
             ];
 
             for _ in 1..=20 {
-                // 20 ráfagas de fuego de cobertura
+                // 20 ráfagas 
                 for p in &puertos_a_probar {
                     if *p > 0 {
                         let endpoint = format!("{}:{}", ip_publica, p);
@@ -776,7 +774,7 @@ fn iniciar_vpn(
 pub fn run() {
     tauri::Builder::default()
         .plugin(tauri_plugin_process::init())
-        .plugin(tauri_plugin_updater::Builder::new().build())
+        .plugin(tauri_plugin_updater::init())   
         .plugin(tauri_plugin_opener::init())
         .plugin(tauri_plugin_deep_link::init())
         .invoke_handler(tauri::generate_handler![
