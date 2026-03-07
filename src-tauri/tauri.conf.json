@@ -1,6 +1,6 @@
 {
   "productName": "mimic-app",
-  "version": "1.0.22",
+  "version": "1.0.23",
   "identifier": "com.mimic.vpn",
   "build": {
     "beforeDevCommand": "npm run dev",
@@ -39,11 +39,13 @@
     "resources": [
       "wintun.dll"
     ],
-    "nsis": {
-      "installerIcon": "icons/icon.ico",
-      "uninstallerIcon": "icons/icon.ico",
-      "displayLanguageSelector": false,
-      "installMode": "perMachine"
+    "windows": {
+      "nsis": {
+        "installerIcon": "icons/icon.ico",
+        "uninstallerIcon": "icons/icon.ico",
+        "displayLanguageSelector": false,
+        "installMode": "perMachine"
+      }
     }
   },
   "plugins": {
