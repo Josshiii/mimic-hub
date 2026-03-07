@@ -1,6 +1,6 @@
 {
   "productName": "mimic-app",
-  "version": "1.0.21",
+  "version": "1.0.22",
   "identifier": "com.mimic.vpn",
   "build": {
     "beforeDevCommand": "npm run dev",
@@ -38,7 +38,13 @@
     "copyright": "Copyright (c) 2026 Alberto Alvarez Gonzalez",
     "resources": [
       "wintun.dll"
-    ]
+    ],
+    "nsis": {
+      "installerIcon": "icons/icon.ico",
+      "uninstallerIcon": "icons/icon.ico",
+      "displayLanguageSelector": false,
+      "installMode": "perMachine"
+    }
   },
   "plugins": {
     "updater": {
